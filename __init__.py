@@ -70,20 +70,6 @@ def load_models(json_filename):
         return {}
 
 class FMJModelDownloader:
-    """
-    🌀FMJ Smart Model Manager - Gestionnaire intelligent de modèles
-    
-    Ce node permet de gérer le téléchargement de modèles via des profils JSON.
-    
-    Fonctionnalités :
-    - Vérification des modèles manquants
-    - Téléchargement individuel ou en masse
-    - Profils JSON personnalisables
-    - Mise à jour dynamique de la liste des modèles
-    
-    Documentation complète : https://github.com/ton-repo/ComfyUI_FMJ_MD
-    """
-    
     def __init__(self):
         self.json_files = get_available_jsons()
         first_json = self.json_files[0] if self.json_files else "default_models.json"
@@ -96,15 +82,19 @@ class FMJModelDownloader:
         return {
             "required": {
                 "json_profile": (instance.json_files, {
-                    "tooltip": "📁 Profil JSON contenant la liste des modèles à gérer"
+                    "tooltip": " Profil JSON contenant la liste des modèles à gérer"
                 }),
-                "action": (["🔍 1. Vérifier les manquants", "⬇️ 2. Télécharger le modèle sélectionné", "⬇️️ 3. Télécharger TOUS les manquants"], {
+                "action": ([
+                    "1. Vérifier les manquants",
+                    "2. Télécharger le modèle sélectionné",
+                    "3. Télécharger TOUS les manquants"
+                ], {
                     "tooltip": "🎯 Action à effectuer"
                 }),
                 "model_name": ("STRING", {
                     "default": instance.model_names[0] if instance.model_names else "",
                     "multiline": False,
-                    "tooltip": "📝 Nom du modèle (clic droit pour voir la liste complète)"
+                    "tooltip": " Nom du modèle (clic droit pour voir la liste complète)"
                 }),
                 "force_redownload": ("BOOLEAN", {
                     "default": False, 
@@ -112,7 +102,7 @@ class FMJModelDownloader:
                 }),
             },
             "optional": {
-                "trigger": ("*", {"tooltip": "🔘 Déclencheur optionnel pour enchaînement de workflows"})
+                "trigger": ("*", {"tooltip": " Déclencheur optionnel pour enchaînement de workflows"})
             }
         }
 
@@ -136,19 +126,6 @@ class FMJModelDownloader:
         return os.path.join(target_dir, filename), target_dir
 
     def process_models(self, json_profile, action, model_name, force_redownload, trigger=None):
-        """
-        Traite les actions sur les modèles
-        
-        Args:
-            json_profile: Nom du fichier JSON de profil
-            action: Action à effectuer (vérification, téléchargement unique ou multiple)
-            model_name: Nom du modèle à télécharger
-            force_redownload: Si True, retélécharge même si le fichier existe
-            trigger: Déclencheur optionnel
-            
-        Returns:
-            status_report: Rapport textuel de l'opération
-        """
         models = load_models(json_profile)
         if not models:
             return (f"❌ ERREUR: Le profil '{json_profile}' est vide ou invalide.\n\n💡 Vérifiez que le fichier JSON existe dans le dossier json_lists.",)
@@ -156,7 +133,6 @@ class FMJModelDownloader:
         missing_models = []
         existing_models = []
 
-        # Analyse des modèles présents/manquants
         for name, info in models.items():
             filepath, target_dir = self.get_model_path(info)
             try:
@@ -170,10 +146,10 @@ class FMJModelDownloader:
                 missing_models.append(name)
 
         # Action 1: Vérification
-        if action == "🔍 1. Vérifier les manquants":
-            report = f"📊 --- RAPPORT DE VÉRIFICATION ---\n"
+        if action == "1. Vérifier les manquants":
+            report = f" --- RAPPORT DE VÉRIFICATION ---\n"
             report += f"📁 Profil: {json_profile}\n"
-            report += f"📈 Total modèles: {len(models)}\n"
+            report += f" Total modèles: {len(models)}\n"
             report += f"--------------------------------------\n\n"
             report += f"✅ PRÉSENTS ({len(existing_models)}) :\n"
             if existing_models:
@@ -192,7 +168,7 @@ class FMJModelDownloader:
             return (report,)
 
         # Action 2: Télécharger un modèle spécifique
-        elif action == "⬇️ 2. Télécharger le modèle sélectionné":
+        elif action == "2. Télécharger le modèle sélectionné":
             if model_name not in models:
                 available = list(models.keys())
                 return (f"❌ ERREUR: Modèle '{model_name}' introuvable dans {json_profile}\n\n"
@@ -203,11 +179,10 @@ class FMJModelDownloader:
             if model_name in existing_models and not force_redownload:
                 return (f"ℹ️ INFORMATION\n\n"
                        f"Le modèle '{model_name}' est déjà présent localement.\n\n"
-                       f"💡 Pour le retélécharger:\n"
+                       f" Pour le retélécharger:\n"
                        f"   • Activez l'option 'force_redownload'\n"
                        f"   • Ou utilisez l'action 'Télécharger TOUS les manquants'")
 
-            # Confirmation de téléchargement
             model_info = models[model_name]
             filepath, target_dir = self.get_model_path(model_info)
             
@@ -216,7 +191,7 @@ class FMJModelDownloader:
             report += f"📁 Destination: {target_dir}\n"
             report += f"🔗 URL: {model_info['url'][:80]}...\n"
             report += f"⚠️ Force download: {'Oui' if force_redownload else 'Non'}\n\n"
-            report += f"⏳ Veuillez patienter..."
+            report += f" Veuillez patienter..."
             
             print(f"\n{report}")
             
@@ -245,23 +220,22 @@ class FMJModelDownloader:
                 return (error_report,)
 
         # Action 3: Télécharger tous les manquants
-        elif action == "⬇️⬇️ 3. Télécharger TOUS les manquants":
+        elif action == "3. Télécharger TOUS les manquants":
             if not missing_models:
                 return (f"🎉 FÉLICITATIONS !\n\n"
                        f"Tous les modèles du profil '{json_profile}' sont déjà présents.\n\n"
                        f"📊 Statistiques:\n"
                        f"   ✅ Présents: {len(existing_models)}\n"
-                       f"   ❌ Manquants: 0\n\n"
+                       f"    Manquants: 0\n\n"
                        f"💡 Vous pouvez changer de profil pour vérifier d'autres modèles.")
 
-            # Confirmation avant téléchargement en masse
-            report = f"🚀 --- TÉLÉCHARGEMENT EN MASSE ---\n\n"
-            report += f"📁 Profil: {json_profile}\n"
+            report = f" --- TÉLÉCHARGEMENT EN MASSE ---\n\n"
+            report += f" Profil: {json_profile}\n"
             report += f"📦 Modèles à télécharger: {len(missing_models)}/{len(models)}\n\n"
             report += f"📋 Liste des modèles:\n"
             for i, name in enumerate(missing_models, 1):
                 report += f"   {i}. {name}\n"
-            report += f"\n⏳ Démarrage dans 2 secondes...\n"
+            report += f"\n⏳ Démarrage...\n"
             report += f"--------------------------------------\n"
             
             print(f"\n{report}")
@@ -280,7 +254,6 @@ class FMJModelDownloader:
                     failed_models.append((name, str(e)))
                     detailed_report += f"❌ [{i}/{len(missing_models)}] {name}: {str(e)[:50]}...\n"
             
-            # Rapport final
             final_report = f"\n{'='*50}\n"
             final_report += f"🏁 --- TÉLÉCHARGEMENT TERMINÉ ---\n\n"
             final_report += f"📊 Résultats:\n"
@@ -302,7 +275,7 @@ class FMJModelDownloader:
             print(final_report)
             return (final_report,)
 
-        return ("❌ Action inconnue. Veuillez sélectionner une action valide.",)
+        return (f"❌ Action inconnue: '{action}'. Veuillez sélectionner une action valide.",)
 
     def _download_single(self, model_name, model_info, silent=False):
         filepath, target_dir = self.get_model_path(model_info)
@@ -342,5 +315,5 @@ NODE_CLASS_MAPPINGS = {
 }
 
 NODE_DISPLAY_NAME_MAPPINGS = {
-    "FMJModelDownloader": "🌀FMJ  Smart Model Manager"
+    "FMJModelDownloader": "🌀FMJ Smart Model Manager"
 }
