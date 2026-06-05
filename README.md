@@ -27,4 +27,4 @@ Gestionnaire intelligent de téléchargement de modèles pour ComfyUI avec profi
 1. Clonez le repository dans `ComfyUI/custom_nodes/` :
 ```bash
 cd ComfyUI/custom_nodes/
-git clone https://github.com/votre-repo/ComfyUI_FMJ_MD.git
+git clone https://github.com/bulldog68/ComfyUI_FMJ_MD.git
