@@ -54,6 +54,14 @@
    "ltx-2.3-22b-ic-lora-union-control-ref0.5.safetensors": {
     "url": "https://huggingface.co/Lightricks/LTX-2.3-22b-IC-LoRA-Union-Control/resolve/main/ltx-2.3-22b-ic-lora-union-control-ref0.5.safetensors?download=true",
     "folder": "lora/ltx"
+  },
+   "ace_1.5_vae.safetensors": {
+    "url": "https://huggingface.co/Comfy-Org/ace_step_1.5_ComfyUI_files/resolve/main/split_files/vae/ace_1.5_vae.safetensors?download=true",
+    "folder": "vae"
+  },
+  "ltx-2.3_text_projection_fp8.safetensors": {
+    "url": "https://huggingface.co/Winnougan/LTX-2.3-INT8/resolve/main/ltx-2.3_text_projection_fp8.safetensors?download=true",
+    "folder": "clip"
   }
 }
 
