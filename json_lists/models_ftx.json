@@ -1,0 +1,59 @@
+{
+  "acestep_v1.5_xl_turbo_bf16.safetensors": {
+    "url": "https://huggingface.co/Comfy-Org/ace_step_1.5_ComfyUI_files/resolve/main/split_files/diffusion_models/acestep_v1.5_xl_turbo_bf16.safetensors?download=true",
+    "folder": "unet/acestep"
+  },
+  "gemma_3_12B_it_fp4_mixed.safetensors": {
+    "url": "https://huggingface.co/Comfy-Org/ltx-2/resolve/main/split_files/text_encoders/gemma_3_12B_it_fp4_mixed.safetensors?download=true",
+    "folder": "clip"
+  },
+  "film_net_fp16.safetensors": {
+    "url": "https://huggingface.co/Comfy-Org/frame_interpolation/resolve/main/frame_interpolation/film_net_fp16.safetensors",
+    "folder": "frame_interpolation"
+  },
+  "ltx-2.3-spatial-upscaler-x2-1.1.safetensors": {
+    "url": "https://huggingface.co/Lightricks/LTX-2.3/resolve/main/ltx-2.3-spatial-upscaler-x2-1.1.safetensors?download=true",
+    "folder": "latent_upscale_models"
+  },
+  "MelBandRoformer_fp16.safetensors": {
+    "url": "https://huggingface.co/Kijai/MelBandRoFormer_comfy/resolve/main/MelBandRoformer_fp16.safetensors?download=true",
+    "folder": "unet/MelBandRoformer"
+  },
+  "qwen_4b_ace15.safetensors": {
+    "url": "https://huggingface.co/Comfy-Org/ace_step_1.5_ComfyUI_files/resolve/main/split_files/text_encoders/qwen_4b_ace15.safetensors?download=true",
+    "folder": "clip"
+  },
+  "qwen_0.6b_ace15.safetensors": {
+    "url": "https://huggingface.co/Comfy-Org/ace_step_1.5_ComfyUI_files/resolve/main/split_files/text_encoders/qwen_0.6b_ace15.safetensors?download=true",
+    "folder": "clip"
+  },
+  "taeltx2_3.safetensors": {
+    "url": "https://huggingface.co/Kijai/LTX2.3_comfy/resolve/main/vae/taeltx2_3.safetensors?download=true",
+    "folder": "vae"
+  },
+   "LTX23_audio_vae_bf16.safetensors": {
+    "url": "https://huggingface.co/Kijai/LTX2.3_comfy/resolve/main/vae/LTX23_audio_vae_bf16.safetensors?download=true",
+    "folder": "vae"
+  },
+  "LTX23_video_vae_bf16.safetensors": {
+    "url": "https://huggingface.co/Kijai/LTX2.3_comfy/resolve/main/vae/LTX23_video_vae_bf16.safetensors?download=true",
+    "folder": "vae"
+  },
+  "Lltx-2.3-22b-distilled-fp8.safetensors": {
+    "url": "https://huggingface.co/Hippotes/LTX-2.3-various-formats/resolve/main/ltx-2.3-22b-distilled-fp8.safetensors?download=true",
+    "folder": "unet/ltx"
+  },
+  "ltx-2.3-22b-ic-lora-motion-track-control-ref0.5.safetensors": {
+    "url": "https://huggingface.co/Lightricks/LTX-2.3-22b-IC-LoRA-Motion-Track-Control/resolve/main/ltx-2.3-22b-ic-lora-motion-track-control-ref0.5.safetensors?download=true",
+    "folder": "lora/ltx"
+  },
+  "head_swap_v3_rank_64.safetensors?download=true": {
+    "url": "https://huggingface.co/Alissonerdx/BFS-Best-Face-Swap-Video/resolve/main/ltx-2.3/head_swap_v3_rank_64.safetensors?download=true",
+    "folder": "lora/ltx"
+  },
+   "ltx-2.3-22b-ic-lora-union-control-ref0.5.safetensors": {
+    "url": "https://huggingface.co/Lightricks/LTX-2.3-22b-IC-LoRA-Union-Control/resolve/main/ltx-2.3-22b-ic-lora-union-control-ref0.5.safetensors?download=true",
+    "folder": "lora/ltx"
+  }
+}
+
