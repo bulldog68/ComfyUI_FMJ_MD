@@ -1,0 +1,114 @@
+{
+  "id": "d1f8203a-a79d-449f-a255-63f1ae7b3366",
+  "revision": 0,
+  "last_node_id": 8,
+  "last_link_id": 7,
+  "nodes": [
+    {
+      "id": 2,
+      "type": "easy showAnything",
+      "pos": [
+        -8060,
+        -1920
+      ],
+      "size": [
+        580,
+        500
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "anything",
+          "shape": 7,
+          "type": "*",
+          "link": 7
+        }
+      ],
+      "outputs": [
+        {
+          "name": "output",
+          "type": "*",
+          "links": null
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-easy-use",
+        "ver": "625efbfa2fc20c31797dfffcbb41a26b6d91ab7b",
+        "Node name for S&R": "easy showAnything"
+      },
+      "widgets_values": [
+        "📊 --- RAPPORT DE VÉRIFICATION ---\n📁 Profil: models_int4.json\n📈 Total modèles: 21\n--------------------------------------\n\n✅ PRÉSENTS (21) :\n   ✓ flux-2-klein-4b-fp8\n   ✓ qwen_3_4b_fp8_mixed.safetensors\n   ✓ flux2-vae.safetensors\n   ✓ hunyuan3d-dit-v2-mv.fp16.safetensors\n   ✓ flux-2-klein-9b-fp8.safetensors\n   ✓ qwen_3_8b_fp8mixed.safetensors\n   ✓ ernie-image-turbo-fp8.safetensors\n   ✓ ministral-3-3b.safetensors\n   ✓ z-img_fp8-e5m2.safetensors\n   ✓ ae.safetensors\n   ✓ svdq-int4_r128-z-image-turbo.safetensors\n   ✓ sqwen_2.5_vl_7b_fp8_scaled.safetensors\n   ✓ nunchaku_qwen_image_edit_2511_balance_int4.safetensors\n   ✓ qwen_image_vae.safetensors\n   ✓ Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors\n   ✓ VNCCS_PoseStudioV5_000012800.safetensors\n   ✓ VNCCS_PoseStudioKlein9b_V1.safetensors\n   ✓ nunchaku_qwen_image_2512_balance_int4.safetensors\n   ✓ Qwen-Image-2512-Lightning-4steps-V1.0-bf16.safetensors\n   ✓ Qwen-Image-InstantX-ControlNet-Union.safetensors\n   ✓ Qwen-Image-InstantX-ControlNet-Inpainting.safetensors\n\n❌ MANQUANTS (0) :\n   🎉 Aucun (Tout est à jour !)\n\n--------------------------------------\n💡 Astuce: Utilisez l'action 3 pour télécharger tous les manquants"
+      ]
+    },
+    {
+      "id": 8,
+      "type": "FMJModelDownloader",
+      "pos": [
+        -8500,
+        -1920
+      ],
+      "size": [
+        410,
+        130
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "trigger",
+          "shape": 7,
+          "type": "*",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "status_report",
+          "type": "STRING",
+          "links": [
+            7
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "FMJModelDownloader"
+      },
+      "widgets_values": [
+        "models_int4.json",
+        "🔍 1. Vérifier les manquants",
+        "flux-2-klein-4b-fp8",
+        false
+      ]
+    }
+  ],
+  "links": [
+    [
+      7,
+      8,
+      0,
+      2,
+      0,
+      "STRING"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 0.9556107882564807,
+      "offset": [
+        8916.074356926958,
+        2167.679548677326
+      ]
+    },
+    "frontendVersion": "1.45.15",
+    "VHS_latentpreview": true,
+    "VHS_latentpreviewrate": 0,
+    "VHS_MetadataImage": true,
+    "VHS_KeepIntermediate": true
+  },
+  "version": 0.4
+}

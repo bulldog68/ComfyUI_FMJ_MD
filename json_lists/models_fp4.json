@@ -1,0 +1,87 @@
+{
+    "flux-2-klein-4b-fp8": {
+        "url": "https://huggingface.co/black-forest-labs/FLUX.2-klein-4b-fp8/resolve/main/flux-2-klein-4b-fp8.safetensors?download=true",
+        "folder": "unet/klein4b"
+    },
+    "qwen_3_4b_fp8_mixed.safetensors": {
+        "url": "https://huggingface.co/Comfy-Org/z_image_turbo/resolve/main/split_files/text_encoders/qwen_3_4b_fp8_mixed.safetensors",
+        "folder": "clip"
+    },
+    "flux2-vae.safetensors": {
+        "url": "https://huggingface.co/Comfy-Org/flux2-dev/resolve/main/split_files/vae/flux2-vae.safetensors",
+        "folder": "vae"
+    },
+    "hunyuan3d-dit-v2-mv.fp16.safetensors": {
+        "url": "https://huggingface.co/tencent/Hunyuan3D-2mv/resolve/main/hunyuan3d-dit-v2-mv/model.fp16.safetensors",
+        "folder": "checkpoints/hunyuan"
+    },
+    "flux-2-klein-9b-fp8.safetensors": {
+        "url": "https://huggingface.co/hfmaster/models-moved/resolve/main/flux2/flux-2-klein-9b-fp8.safetensors?download=true",
+        "folder": "unet/klein9b"
+    },
+     "qwen_3_8b_fp8mixed.safetensors": {
+        "url": "https://huggingface.co/Comfy-Org/vae-text-encorder-for-flux-klein-9b/resolve/main/split_files/text_encoders/qwen_3_8b_fp8mixed.safetensors",
+        "folder": "clip"
+    },
+     "ernie-image-turbo-fp8.safetensors": {
+        "url": "https://huggingface.co/Bedovyy/ERNIE-Image-Quantized/resolve/main/ernie-image-turbo-fp8.safetensors?download=true",
+        "folder": "unet/ernie"
+    },
+    "ministral-3-3b.safetensors": {
+        "url": "https://huggingface.co/Comfy-Org/ERNIE-Image/resolve/main/text_encoders/ministral-3-3b.safetensors?download=true",
+        "folder": "clip"
+    },
+    "z-img_fp8-e5m2.safetensors": {
+        "url": "https://huggingface.co/drbaph/Z-Image-fp8/resolve/main/z-img_fp8-e5m2.safetensors?download=true",
+        "folder": "unet/z-imagebase"
+    },
+    "ae.safetensors": {
+        "url": "https://huggingface.co/lovis93/testllm/resolve/main/ae.safetensors?download=true",
+        "folder": "vae"
+    },
+    "svdq-int4_r128-z-image-turbo.safetensors": {
+        "url": "https://huggingface.co/nunchaku-ai/nunchaku-z-image-turbo/blob/main/svdq-fp4_r128-z-image-turbo.safetensors?download=true",
+        "folder": "unet/z-imageturbo"
+    },
+    "sqwen_2.5_vl_7b_fp8_scaled.safetensors": {
+        "url": "https://huggingface.co/Comfy-Org/Qwen-Image_ComfyUI/resolve/main/split_files/text_encoders/qwen_2.5_vl_7b_fp8_scaled.safetensors?download=true",
+        "folder": "clip"
+    },
+    "nunchaku_qwen_image_edit_2511_balance_int4.safetensors": {
+        "url": "https://huggingface.co/QuantFunc/Nunchaku-Qwen-Image-EDIT-2511/blob/main/nunchaku_qwen_image_edit_2511_balance_fp4.safetensors?download=true",
+        "folder": "unet/qwen_edit_2511"
+    },
+    "qwen_image_vae.safetensors": {
+        "url": "https://huggingface.co/Comfy-Org/Qwen-Image_ComfyUI/resolve/main/split_files/vae/qwen_image_vae.safetensors?download=true",
+        "folder": "vae"
+    },
+     "Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors": {
+        "url": "https://huggingface.co/lightx2v/Qwen-Image-Edit-2511-Lightning/resolve/main/Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors?download=true",
+        "folder": "loras/qwen_edit"
+    },
+    "VNCCS_PoseStudioV5_000012800.safetensors": {
+        "url": "https://huggingface.co/MIUProject/VNCCS_PoseStudio/resolve/43ffac7d6036180f724ef16645143d5716407ddb/models/loras/qwen/VNCCS/VNCCS_PoseStudioV5_000012800.safetensors?download=true",
+        "folder": "loras/qwen_edit"
+    },
+    "VNCCS_PoseStudioKlein9b_V1.safetensors": {
+        "url": "https://huggingface.co/MIUProject/VNCCS_PoseStudio_Klein/resolve/main/models/loras/Klein9b/VNCCS/VNCCS_PoseStudioKlein9b_V1.safetensors?download=true",
+        "folder": "loras/Klein9b"
+    },
+    "nunchaku_qwen_image_2512_balance_int4.safetensors": {
+        "url": "https://huggingface.co/QuantFunc/Nunchaku-Qwen-Image-2512/blob/main/nunchaku_qwen_image_2512_balance_fp4.safetensors?download=true",
+        "folder": "unet/qwen_image_2512"
+    },
+    "Qwen-Image-2512-Lightning-4steps-V1.0-bf16.safetensors": {
+        "url": "https://huggingface.co/lightx2v/Qwen-Image-2512-Lightning/resolve/main/Qwen-Image-2512-Lightning-4steps-V1.0-bf16.safetensors?download=true",
+        "folder": "loras/qwen_image"
+    },
+    "Qwen-Image-InstantX-ControlNet-Union.safetensors": {
+        "url": "https://huggingface.co/Comfy-Org/Qwen-Image-InstantX-ControlNets/resolve/main/split_files/controlnet/Qwen-Image-InstantX-ControlNet-Union.safetensors?download=true",
+        "folder": "controlnet/qwen_image"
+    },
+    "Qwen-Image-InstantX-ControlNet-Inpainting.safetensors": {
+        "url": "https://huggingface.co/Comfy-Org/Qwen-Image-InstantX-ControlNets/resolve/main/split_files/controlnet/Qwen-Image-InstantX-ControlNet-Inpainting.safetensors?download=true",
+        "folder": "controlnet/qwen_image"
+    }
+    
+}
