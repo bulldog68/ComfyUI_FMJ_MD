@@ -8,9 +8,7 @@ from aiohttp import web
 
 NODE_DIR = os.path.dirname(__file__)
 JSON_DIR = os.path.join(NODE_DIR, "json_lists")
-
 os.makedirs(JSON_DIR, exist_ok=True)
-
 WEB_DIRECTORY = "./web"
 
 @PromptServer.instance.routes.get("/fmj_get_models")
@@ -19,7 +17,6 @@ async def get_models_api(request):
         filename = request.rel_url.query.get("filename", "default_models.json")
         if "/" in filename or "\\" in filename:
             return web.json_response({"models": []}, status=200)
-        
         filepath = os.path.join(JSON_DIR, filename)
         if not os.path.exists(filepath):
             return web.json_response({"models": []}, status=200)
@@ -69,6 +66,17 @@ def load_models(json_filename):
         print(f"❌ [FMJ] Erreur lecture {json_filename}: {e}")
         return {}
 
+def resolve_symlink(path):
+    """Résout les liens symboliques pour obtenir le chemin réel."""
+    try:
+        if os.path.islink(path):
+            real_path = os.path.realpath(path)
+            print(f" [FMJ] Lien symbolique détecté: {path} -> {real_path}")
+            return real_path
+    except Exception as e:
+        print(f"⚠️ [FMJ] Erreur résolution symlink {path}: {e}")
+    return path
+
 class FMJModelDownloader:
     def __init__(self):
         self.json_files = get_available_jsons()
@@ -82,7 +90,7 @@ class FMJModelDownloader:
         return {
             "required": {
                 "json_profile": (instance.json_files, {
-                    "tooltip": " Profil JSON contenant la liste des modèles à gérer"
+                    "tooltip": "Profil JSON contenant la liste des modèles à gérer"
                 }),
                 "action": ([
                     "1. Vérifier les manquants",
@@ -94,7 +102,7 @@ class FMJModelDownloader:
                 "model_name": ("STRING", {
                     "default": instance.model_names[0] if instance.model_names else "",
                     "multiline": False,
-                    "tooltip": " Nom du modèle (clic droit pour voir la liste complète)"
+                    "tooltip": "Nom du modèle (clic droit pour voir la liste complète)"
                 }),
                 "force_redownload": ("BOOLEAN", {
                     "default": False, 
@@ -102,7 +110,7 @@ class FMJModelDownloader:
                 }),
             },
             "optional": {
-                "trigger": ("*", {"tooltip": " Déclencheur optionnel pour enchaînement de workflows"})
+                "trigger": ("*", {"tooltip": "Déclencheur optionnel pour enchaînement de workflows"})
             }
         }
 
@@ -118,9 +126,11 @@ class FMJModelDownloader:
         
         if base_folder_name in folder_paths.folder_names_and_paths:
             base_dir = folder_paths.folder_names_and_paths[base_folder_name][0][0]
+            base_dir = resolve_symlink(base_dir)
             target_dir = os.path.join(base_dir, *path_parts[1:]) if len(path_parts) > 1 else base_dir
         else:
             target_dir = os.path.join(folder_paths.models_dir, target_folder)
+            target_dir = resolve_symlink(target_dir)
             
         filename = model_info["url"].split('/')[-1].split('?')[0]
         return os.path.join(target_dir, filename), target_dir
@@ -141,15 +151,14 @@ class FMJModelDownloader:
                 pass
 
             if os.path.exists(filepath) and not force_redownload:
-                existing_models.append(name)
+                existing_models.append(name) 
             else:
                 missing_models.append(name)
 
-        # Action 1: Vérification
         if action == "1. Vérifier les manquants":
-            report = f" --- RAPPORT DE VÉRIFICATION ---\n"
-            report += f"📁 Profil: {json_profile}\n"
-            report += f" Total modèles: {len(models)}\n"
+            report = f"--- RAPPORT DE VÉRIFICATION ---\n"
+            report += f" Profil: {json_profile}\n"
+            report += f"Total modèles: {len(models)}\n"
             report += f"--------------------------------------\n\n"
             report += f"✅ PRÉSENTS ({len(existing_models)}) :\n"
             if existing_models:
@@ -167,19 +176,18 @@ class FMJModelDownloader:
             report += f"\n💡 Astuce: Utilisez l'action 3 pour télécharger tous les manquants"
             return (report,)
 
-        # Action 2: Télécharger un modèle spécifique
         elif action == "2. Télécharger le modèle sélectionné":
             if model_name not in models:
                 available = list(models.keys())
                 return (f"❌ ERREUR: Modèle '{model_name}' introuvable dans {json_profile}\n\n"
                        f"📋 Modèles disponibles ({len(available)}):\n" + 
-                       "\n".join([f"  • {m}" for m in available[:10]]) +
+                        "\n".join([f"  • {m}" for m in available[:10]]) +
                        (f"\n  ... et {len(available)-10} autres" if len(available) > 10 else ""),)
             
             if model_name in existing_models and not force_redownload:
                 return (f"ℹ️ INFORMATION\n\n"
                        f"Le modèle '{model_name}' est déjà présent localement.\n\n"
-                       f" Pour le retélécharger:\n"
+                       f"Pour le retélécharger:\n"
                        f"   • Activez l'option 'force_redownload'\n"
                        f"   • Ou utilisez l'action 'Télécharger TOUS les manquants'")
 
@@ -191,7 +199,7 @@ class FMJModelDownloader:
             report += f"📁 Destination: {target_dir}\n"
             report += f"🔗 URL: {model_info['url'][:80]}...\n"
             report += f"⚠️ Force download: {'Oui' if force_redownload else 'Non'}\n\n"
-            report += f" Veuillez patienter..."
+            report += f"Veuillez patienter..."
             
             print(f"\n{report}")
             
@@ -199,10 +207,10 @@ class FMJModelDownloader:
                 self._download_single(model_name, model_info, silent=False)
                 
                 success_report = f"✅ --- TÉLÉCHARGEMENT RÉUSSI ---\n\n"
-                success_report += f"📦 Modèle: {model_name}\n"
+                success_report += f" Modèle: {model_name}\n"
                 success_report += f"💾 Taille: {os.path.getsize(filepath) / (1024*1024):.2f} MB\n"
                 success_report += f"📍 Chemin: {filepath}\n\n"
-                success_report += f"🎉 Le modèle est prêt à l'emploi !"
+                success_report += f"🎉 Le modèle est prêt à l'emploi!"
                 
                 print(success_report)
                 return (success_report,)
@@ -219,18 +227,17 @@ class FMJModelDownloader:
                 print(error_report)
                 return (error_report,)
 
-        # Action 3: Télécharger tous les manquants
         elif action == "3. Télécharger TOUS les manquants":
             if not missing_models:
                 return (f"🎉 FÉLICITATIONS !\n\n"
                        f"Tous les modèles du profil '{json_profile}' sont déjà présents.\n\n"
                        f"📊 Statistiques:\n"
                        f"   ✅ Présents: {len(existing_models)}\n"
-                       f"    Manquants: 0\n\n"
+                       f"   ❌ Manquants: 0\n\n"
                        f"💡 Vous pouvez changer de profil pour vérifier d'autres modèles.")
 
-            report = f" --- TÉLÉCHARGEMENT EN MASSE ---\n\n"
-            report += f" Profil: {json_profile}\n"
+            report = f"--- TÉLÉCHARGEMENT EN MASSE ---\n\n"
+            report += f"Profil: {json_profile}\n"
             report += f"📦 Modèles à télécharger: {len(missing_models)}/{len(models)}\n\n"
             report += f"📋 Liste des modèles:\n"
             for i, name in enumerate(missing_models, 1):
@@ -260,7 +267,7 @@ class FMJModelDownloader:
             final_report += f"   ✅ Succès: {success_count}/{len(missing_models)}\n"
             if failed_models:
                 final_report += f"   ❌ Échecs: {len(failed_models)}\n"
-            final_report += f"\n💾 Modèles téléchargés:\n"
+            final_report += f"\n Modèles téléchargés:\n"
             for name in missing_models[:success_count]:
                 final_report += f"   ✓ {name}\n"
             
@@ -270,7 +277,7 @@ class FMJModelDownloader:
                     final_report += f"   ✗ {name}\n"
             
             final_report += f"\n{'='*50}\n"
-            final_report += f"\n🎉 {success_count} modèle(s) prêt(s) à l'emploi !"
+            final_report += f"\n🎉 {success_count} modèle(s) prêt(s) à l'emploi!"
             
             print(final_report)
             return (final_report,)
@@ -282,7 +289,7 @@ class FMJModelDownloader:
         url = model_info["url"]
 
         if not silent:
-            print(f"⬇️ [FMJ] Téléchargement de '{model_name}'...")
+            print(f"️ [FMJ] Téléchargement de '{model_name}'...")
         
         try:
             headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)'}
@@ -304,7 +311,7 @@ class FMJModelDownloader:
                 print(f"✅ [FMJ] Téléchargement terminé: {filepath}")
                 print(f"   Taille: {downloaded / (1024*1024):.2f} MB")
             
-            return f"OK"
+            return "OK"
         except Exception as e:
             if os.path.exists(filepath):
                 os.remove(filepath)
