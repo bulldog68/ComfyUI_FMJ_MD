@@ -1,5 +1,5 @@
 {
-    "flux-2-klein-4b-fp8": {
+    "flux-2-klein-4b-fp8.safetensors": {
         "url": "https://huggingface.co/black-forest-labs/FLUX.2-klein-4b-fp8/resolve/main/flux-2-klein-4b-fp8.safetensors?download=true",
         "folder": "unet/klein4b"
     },
@@ -82,6 +82,10 @@
     "Qwen-Image-InstantX-ControlNet-Inpainting.safetensors": {
         "url": "https://huggingface.co/Comfy-Org/Qwen-Image-InstantX-ControlNets/resolve/main/split_files/controlnet/Qwen-Image-InstantX-ControlNet-Inpainting.safetensors?download=true",
         "folder": "controlnet/qwen_image"
+    },
+    "anima-base-v1.0.safetensors": {
+        "url": "https://huggingface.co/circlestone-labs/Anima/blob/main/split_files/diffusion_models/anima-base-v1.0.safetensors",
+        "folder": "unet/anima"
     }
-    
 }
+
