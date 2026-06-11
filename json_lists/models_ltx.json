@@ -62,6 +62,9 @@
   "ltx-2.3_text_projection_fp8.safetensors": {
     "url": "https://huggingface.co/Winnougan/LTX-2.3-INT8/resolve/main/ltx-2.3_text_projection_fp8.safetensors?download=true",
     "folder": "clip"
+  },
+   "lora_weights.safetensors": {
+    "url": "https://huggingface.co/AviadDahan/LTX-2.3-ID-LoRA-TalkVid-3K/resolve/main/lora_weights.safetensors?download=true",
+    "folder": "loras/ltx"
   }
 }
-
