@@ -47,7 +47,7 @@
     "url": "https://huggingface.co/Lightricks/LTX-2.3-22b-IC-LoRA-Motion-Track-Control/resolve/main/ltx-2.3-22b-ic-lora-motion-track-control-ref0.5.safetensors?download=true",
     "folder": "loras/ltx"
   },
-  "head_swap_v3_rank_64.safetensors?download=true": {
+  "head_swap_v3_rank_64.safetensors": {
     "url": "https://huggingface.co/Alissonerdx/BFS-Best-Face-Swap-Video/resolve/main/ltx-2.3/head_swap_v3_rank_64.safetensors?download=true",
     "folder": "loras/ltx"
   },
