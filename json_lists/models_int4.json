@@ -83,9 +83,29 @@
         "url": "https://huggingface.co/Comfy-Org/Qwen-Image-InstantX-ControlNets/resolve/main/split_files/controlnet/Qwen-Image-InstantX-ControlNet-Inpainting.safetensors?download=true",
         "folder": "controlnet/qwen_image"
     },
-    "anima-base-v1.0.safetensors": {
+     "anima-base-v1.0.safetensors": {
         "url": "https://huggingface.co/circlestone-labs/Anima/blob/main/split_files/diffusion_models/anima-base-v1.0.safetensors",
         "folder": "unet/anima"
+    },
+    "ideogram4_fp8_scaled.safetensors": {
+        "url": "https://huggingface.co/Comfy-Org/Ideogram-4/blob/main/diffusion_models/ideogram4_fp8_scaled.safetensors",
+        "folder": "unet/ideogram"
+    },
+    "qwen3vl_8b_fp8_scaled.safetensors": {
+        "url": "https://huggingface.co/Comfy-Org/Qwen3-VL/resolve/main/text_encoders/qwen3vl_8b_fp8_scaled.safetensors",
+        "folder": "clip"
+    },
+    "anima-turbo-lora-v0.2.safetensors": {
+        "url": "https://civitai.com/api/download/models/2979642",
+        "folder": "loras/anima"
+    },
+    "ideogram_4_turbotime_v1.safetensors": {
+        "url": "https://huggingface.co/ostris/ideogram_4_turbotime_lora/resolve/main/ideogram_4_turbotime_v1.safetensors",
+        "folder": "loras/ideogram"
+    },
+    "qwen_3_06b_base.safetensors": {
+        "url": "https://huggingface.co/circlestone-labs/Anima/resolve/main/split_files/text_encoders/qwen_3_06b_base.safetensors",
+        "folder": "clip"
     }
 }
 
